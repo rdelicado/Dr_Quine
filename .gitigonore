@@ -1,7 +1,7 @@
 
 *
-!*.c
-!*.s
-!Makefile
-!.gitigore
+!**/*.c
+!**/*.s
+!**/Makefile
+!.gitignore
 !README.md

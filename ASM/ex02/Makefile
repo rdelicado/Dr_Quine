@@ -1,8 +1,12 @@
-CC = gcc
-FLAGS = -Wall -Wextra -Werror
+ASM_FLAGS = -f elf64
+GCC_FLAGS = -nostartfiles -no-pie
+LD = ld
+LD_FLAGS = -o 
+
 NAME = Grace
-SRC = Grace.c
+SRC = Grace.s
 OBJ = $(SRC:.c=.o)
+
 all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(FLAGS) -o $(NAME) $(OBJ)
@@ -11,15 +15,19 @@ $(NAME): $(OBJ)
 clean:
 	rm -f $(OBJ)
 	rm -f tmp_Grace
-	rm -f $(NAME)
-	rm -f Grace_kid.c
+
 fclean: clean
 	rm -f $(NAME)
+	rm -f Grace_kid.s
+
 re: fclean all
-exec:
+
+diff:
 	./$(NAME) > tmp_Grace
-	diff tmp_Grace Grace.c
-.PHONY: all clean fclean re
+	diff tmp_Grace Grace.s
+
+cp:
+	./$(NAME) > tmp_Grace
 
 di:
-	diff Grace_kid.c Grace.c
+	diff tmp_Grace Grace.s

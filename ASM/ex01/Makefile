@@ -1,5 +1,5 @@
-ASM = nasm
 ASM_FLAGS = -f elf64
+GCC_FLAGS = -nostartfiles -no-pie
 LD = ld
 LD_FLAGS = -o
 NAME = Collen
@@ -9,10 +9,10 @@ OBJ = $(SRC:.s=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(LD) $(LD_FLAGS) $(NAME) $(OBJ)
+	gcc $(OBJ) -o $(NAME) $(GCC_FLAGS)
 
-%.o: %.s
-	$(ASM) $(ASM_FLAGS) $< -o $@
+$(OBJ): $(SRC)
+	nasm $(ASM_FLAGS) $(SRC) -o $(OBJ)
 
 clean:
 	rm -f $(OBJ)
@@ -21,14 +21,15 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f tmp_Collen
 
 re: fclean all
 
 .PHONY: all clean fclean re
 
-exec:
+diff:
 	./$(NAME) > tmp_Collen
-	diff tmp_Collen Collen.c
+	diff tmp_Collen Collen.s
 
 cp:
 	./$(NAME) > tmp_Collen

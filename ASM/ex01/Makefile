@@ -2,6 +2,7 @@ ASM_FLAGS = -f elf64
 GCC_FLAGS = -nostartfiles -no-pie
 LD = ld
 LD_FLAGS = -o
+
 NAME = Collen
 SRC = Collen.s
 OBJ = $(SRC:.s=.o)
@@ -17,11 +18,9 @@ $(OBJ): $(SRC)
 clean:
 	rm -f $(OBJ)
 	rm -f tmp_Collen
-	rm -f $(NAME)
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f tmp_Collen
 
 re: fclean all
 

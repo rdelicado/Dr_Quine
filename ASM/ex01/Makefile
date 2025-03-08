@@ -1,7 +1,10 @@
-ASM_FLAGS = -f elf64
-GCC_FLAGS = -nostartfiles -no-pie
-LD = ld
-LD_FLAGS = -o
+ifeq ($(shell uname), Darwin)
+    ASM_FLAGS = -f macho64
+    GCC_FLAGS = 
+else
+    ASM_FLAGS = -f elf64
+    GCC_FLAGS = -nostartfiles -no-pie
+endif
 
 NAME = Collen
 SRC = Collen.s
@@ -34,4 +37,4 @@ cp:
 	./$(NAME) > tmp_Collen
 
 di:
-	diff tmp_Collen Collen.c
+	diff tmp_Collen Collen.s

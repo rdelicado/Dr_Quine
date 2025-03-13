@@ -1,10 +1,5 @@
-ifeq ($(shell uname), Darwin)
-    ASM_FLAGS = -f macho64
-    GCC_FLAGS = 
-else
-    ASM_FLAGS = -f elf64
-    GCC_FLAGS = -nostartfiles -no-pie
-endif
+ASM_FLAGS = -f elf64
+GCC_FLAGS = -nostartfiles -no-pie
 
 NAME = Collen
 SRC = Collen.s

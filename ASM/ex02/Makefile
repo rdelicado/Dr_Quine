@@ -24,3 +24,6 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+diff:
+	diff Grace.s Grace_kid.s

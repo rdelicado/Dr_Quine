@@ -1,29 +1,29 @@
-CC = gcc
-FLAGS = -Wall -Wextra -Werror
+ASM_FLAGS = -f elf64
+GCC_FLAGS = -nostartfiles -no-pie -e _start
+
 NAME = Sully
-SRC = Sully.c
-OBJ_DIR = obj
-OBJ = $(OBJ_DIR)/$(SRC:.c=.o)
+SRC = Sully.s
+OBJ = $(SRC:.s=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) -o $(NAME) $(OBJ)
+	gcc $(GCC_FLAGS) -o $(NAME) $(OBJ)
 
-$(OBJ_DIR)/%.o: %.c
-	@mkdir -p $(OBJ_DIR)
-	$(CC) $(FLAGS) -c $< -o $@
+$(OBJ): $(SRC)
+	nasm $(ASM_FLAGS) $(SRC) -o $(OBJ)
 
 clean:
 	rm -f $(OBJ)
-	rm -f Sully_*.c
+	rm -f Sully_*.s
 	rm -f Sully_*
-	rm -f $(NAME)
 
 fclean: clean
-	rm -rf $(OBJ_DIR)
 	rm -f $(NAME)
 
 re: fclean all
 
 .PHONY: all clean fclean re
+
+diff:
+	diff Sully.s Sully_0.c

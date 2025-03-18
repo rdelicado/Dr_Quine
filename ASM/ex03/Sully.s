@@ -11,6 +11,7 @@ section .data
     run_cmd db "./Sully_%d", 0      ; Run command
     mode db "w", 0
     file_handle dq 0                ; File handle
+    remove_eot db "sed -i '$ s/\x04//g' %s", 0
 
 section .text
     extern sprintf  ; For string formatting

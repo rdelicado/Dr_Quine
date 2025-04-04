@@ -23,18 +23,18 @@ _start:
     ; Check if num <= 0
     mov eax, [num]
     test eax, eax
-    jle exit        ; Exit if num = 0
+    jle exit        ; Jump if less or equal to zero
 
-    ; Create filename (Sully_X.s)
+    ; Create number of filename (Sully_X.s)
     dec eax         ; num--
-    mov [num], eax  ; Save back
+    mov [num], eax  ; Save back, num is now X
 
     ; Format filename
     lea rdi, [filename_buffer]  ; First arg: buffer
     lea rsi, [filename]         ; Second arg: format
     mov edx, [num]              ; Third arg: num value
     xor eax, eax                ; Clear eax for varargs function
-    call sprintf
+    call sprintf                ; Sully_X.s
 
     ; Open file
     lea rdi, [filename_buffer]  ; First arg: buffer

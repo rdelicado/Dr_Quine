@@ -26,4 +26,4 @@ re: fclean all
 .PHONY: all clean fclean re
 
 diff:
-	diff Sully.s Sully_0.c
+	diff Sully.s Sully_0.s

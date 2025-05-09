@@ -1,5 +1,7 @@
 # Dr_Quine
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/rdelicad/Dr_Quine)
+
 ## What is a Quine?
 
 A **quine** is a program that, when executed, outputs its own source code. The concept of a quine comes from the study of self-reference in computer science and logic. The term "quine" is inspired by philosopher Willard Van Orman Quine, whose work on language and reference influenced this idea. Quines have long been used as curiosities and programming challenges to demonstrate self-reproducing code.
